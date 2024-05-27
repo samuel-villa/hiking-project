@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 
@@ -18,7 +19,7 @@ Route::get('/subscribe', function () {
 });
 
 Route::get('/login', function () {
-    return 'login';
+    Route::get('login', [UserController::class, 'login']);
 });
 
 Route::get('/profile', function () {
