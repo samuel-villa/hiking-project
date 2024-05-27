@@ -1,47 +1,28 @@
 <?php
 
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\DB;
+use Inertia\Inertia;
 
 Route::get('/', function () {
-    //return view('welcome');
-
-
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
 });
 
-# !!! Test connection to DB OK !!!
-// Route::get('/test-db', function () {
-//     $data = DB::table('Users')->get();
-//     return dump($data);
-// });
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/subscribe', function () {
-    return 'subscribe';
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/login', [UserController::class, 'login']);
+require __DIR__.'/auth.php';
 
-Route::get('/profile', function () {
-    return 'profile';
-});
-
-Route::get('/profile/hikes', function () {
-    return 'profile/{profile_name}/hikes';
-});
-
-Route::get('/profile/starred', function () {
-    return 'profile/{profile_name}/starred';
-});
-
-Route::get('/hike', function () {
-    return 'hike-{hike-slug}';
-});
-
-Route::get('/edit-hike', function () {
-    return 'hike-{hike-slug}/edit';
-});
-
-Route::get('/delete-hike', function () {
-    return 'hike-{hike-slug}/delete';
-});
