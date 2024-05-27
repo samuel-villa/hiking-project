@@ -32,9 +32,7 @@ Route::get('/subscribe', function () {
     return 'subscribe';
 });
 
-Route::get('/login', function () {
-    Route::get('login', [UserController::class, 'login']);
-});
+Route::get('/login', [UserController::class, 'login']);
 
 Route::get('/profile', function () {
     return 'profile';
