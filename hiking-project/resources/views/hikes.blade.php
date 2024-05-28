@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    @include('header')
+    @include('partials/header')
 
 
 
@@ -45,6 +45,7 @@
     </article>
 @endforeach
 
+@include('partials/footer')
 
 </body>
 </html>

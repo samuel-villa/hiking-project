@@ -27,9 +27,5 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/test', [TestController::class, 'show']);
 
-Route::get('/header-test', function () {
-    return view('header');
-});
-
 require __DIR__.'/auth.php';
 
