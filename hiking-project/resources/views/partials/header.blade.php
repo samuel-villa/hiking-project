@@ -1,5 +1,3 @@
-{{-- @extends('hikes')
-@section('header') --}}
 
 <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -40,5 +38,3 @@
       </nav>
 
 </header>
-
-{{-- @endsection --}}
