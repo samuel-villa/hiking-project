@@ -15,4 +15,8 @@ class HikeTag extends Model
         'hike_id',
         'tag_id',
     ];
+    public function hike()
+    {
+        return $this->belongsTo(Hike::class);
+    }
 }

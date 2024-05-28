@@ -16,5 +16,13 @@ class Hike extends Model
         'elevation_gain',
         'description'
     ];
+    public function pictures()
+    {
+        return $this->hasMany(Picture::class);
+    }
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
 }

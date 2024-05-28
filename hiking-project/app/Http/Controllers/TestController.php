@@ -21,12 +21,12 @@ class TestController extends Controller
 
     public function show()
     {
-//        $hikes = Hike::paginate(2);
-//        if ($hike->slug !== $slug) {
-//            return to_route('blog.show', ['slug' => $post->slug, 'id' => $post->id]);
-//        }
+        $hikes = Hike::with(['pictures' => function ($query) {
+            $query->orderBy('id')->limit(1);
+        }, 'tags'])->paginate(10);
+
         return view('hikes', [
-            'hikes' => Hike::paginate(2)
+            'hikes' => $hikes
         ]);
     }
 
