@@ -9,4 +9,12 @@ class Hike extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'distance',
+        'duration',
+        'elevation_gain',
+        'description'
+    ];
+
 }

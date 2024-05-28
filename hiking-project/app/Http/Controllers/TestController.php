@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use App\Models\Hike;
 
 class TestController extends Controller
 {
@@ -12,11 +13,22 @@ class TestController extends Controller
         $filePath = '../resources/views/hikes.blade.php';
         if (File::exists($filePath)) {
             $content = file_get_contents($filePath);
-            // Encapsuler le contenu dans une balise div
-            $html = '<div id="hikes-content">' . $content . '</div>';
-            return response($html);
+            return response($content);
         } else {
             return response('File not found baby', 404);
         }
     }
+
+    public function show($id)
+    {
+        $hike = Hike::findOrFail($id);
+//        if ($hike->slug !== $slug) {
+//            return to_route('blog.show', ['slug' => $post->slug, 'id' => $post->id]);
+//        }
+        return view('hike.show', [
+            'hike' => $hike
+        ]);
+    }
+
+
 }
