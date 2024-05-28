@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    @include('header')
+    @include('partials/header')
 
 {{--<p>Tags:</p>--}}
 {{--@foreach ($hikes as $hike)--}}
@@ -47,6 +47,7 @@
     </article>
 @endforeach
 
+@include('partials/footer')
 
 </body>
 </html>
