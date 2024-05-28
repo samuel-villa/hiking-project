@@ -19,14 +19,14 @@ class TestController extends Controller
         }
     }
 
-    public function show($id)
+    public function show()
     {
-        $hike = Hike::findOrFail($id);
+//        $hikes = Hike::paginate(2);
 //        if ($hike->slug !== $slug) {
 //            return to_route('blog.show', ['slug' => $post->slug, 'id' => $post->id]);
 //        }
-        return view('hike.show', [
-            'hike' => $hike
+        return view('hikes', [
+            'hikes' => Hike::paginate(2)
         ]);
     }
 
