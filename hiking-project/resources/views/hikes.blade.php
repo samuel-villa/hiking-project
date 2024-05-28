@@ -12,18 +12,10 @@
 
     @include('header')
 
-<p>Tags:</p>
-@foreach ($hikes as $hike)
-@if ($hike->tags->isNotEmpty())
-    <ul>
-        @foreach ($hike->tags as $tag)
-            <li>{{ $tag->name }}</li>
-        @endforeach
-    </ul>
-@else
-    <p>No tags available.</p>
-@endif
-@endforeach
+{{--<p>Tags:</p>--}}
+{{--@foreach ($hikes as $hike)--}}
+
+{{--@endforeach--}}
 
 
 @foreach($hikes as $hike)
@@ -42,6 +34,16 @@
         <p>{{ $hike->elevation_gain }}</p>
         <h4>Description</h4>
         <p>{{ $hike->description }}</p>
+        <p>Tags:</p>
+        @if ($hike->tags->isNotEmpty())
+            <ul>
+                @foreach ($hike->tags as $tag)
+                    <li>{{ $tag->name }}</li>
+                @endforeach
+            </ul>
+        @else
+            <p>No tags available.</p>
+        @endif
     </article>
 @endforeach
 
