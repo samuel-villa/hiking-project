@@ -8,11 +8,9 @@
     <title>Document</title>
 </head>
 <body>
-@section('content')
 
-<h1>My Hikes</h1>
 
-@endsection
+@yield('content')
 
 
 @foreach($hikes as $hike)
@@ -23,7 +21,6 @@
         </p>
         <p>
             {{ $hike->duration }}
-{{--            <a href="{{ route('blog.show', ['slug' => $post->slug, 'id' => $post->id]) }}" class="btn btn-primary">Lire la suite</a>--}}
         </p>
         <p>
             {{ $hike->elevation_gain }}
