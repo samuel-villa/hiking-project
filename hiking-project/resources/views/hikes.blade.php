@@ -12,10 +12,6 @@
 
     @include('header')
 
-{{--<p>Tags:</p>--}}
-{{--@foreach ($hikes as $hike)--}}
-
-{{--@endforeach--}}
 
 
 @foreach($hikes as $hike)
@@ -34,6 +30,8 @@
         <p>{{ $hike->elevation_gain }}</p>
         <h4>Description</h4>
         <p>{{ $hike->description }}</p>
+        <h4>Trail Rank</h4>
+        <p>{{ $hike->trail_rank }}</p>
         <p>Tags:</p>
         @if ($hike->tags->isNotEmpty())
             <ul>
