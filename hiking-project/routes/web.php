@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\HikeController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -25,7 +25,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/test', [TestController::class, 'show']);
+Route::get('/test', [HikeController::class, 'show']);
 
-require __DIR__.'/auth.php';
-
+require_once __DIR__.'/auth.php';

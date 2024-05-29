@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use App\Models\Hike;
 
-class TestController extends Controller
+class HikeController extends Controller
 {
     public function showHikesPage()
     {
