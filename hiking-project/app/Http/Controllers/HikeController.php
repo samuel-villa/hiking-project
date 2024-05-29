@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Hike;
+use App\Models\Picture;
 
 
 class HikeController extends Controller
@@ -50,7 +51,6 @@ class HikeController extends Controller
 
     public function add_picture(Request $request)
     {
-        
     }
 
     public function create(Request $request)
@@ -67,19 +67,31 @@ class HikeController extends Controller
 
         $userId = Auth::id();
 
+        // dd($request);
         // dd($request->input('name'));
         // dd($validatedData);
 
-        Hike::create([
-            'name' => $request->input('name'),
-            'distance' => $request->input('distance'),
-            'duration' => $request->input('duration'),
-            'elevation_gain' => $request->input('elevation_gain'),
-            'description' => $request->input('description'),
-            'trail_rank' => '100',
-            'user_id' => $userId,
-        
-        ]);
+        if ($request->hasFile('picture')) {
+            $picture = $request->file('picture');
+            $path = $picture->store('pictures', 'public'); // Store the picture in the 'public/pictures' directory
+
+
+            $hike = Hike::create([
+                'name' => $request->input('name'),
+                'distance' => $request->input('distance'),
+                'duration' => $request->input('duration'),
+                'elevation_gain' => $request->input('elevation_gain'),
+                'description' => $request->input('description'),
+                'trail_rank' => '100',
+                'user_id' => $userId,
+            ]);
+
+            // Create the picture record
+            Picture::create([
+                'hike_id' => $hike->id,
+                'image_path' => $path,
+            ]);
+        }
 
         return redirect()->route('home');
     }
