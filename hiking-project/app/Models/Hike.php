@@ -14,7 +14,8 @@ class Hike extends Model
         'distance',
         'duration',
         'elevation_gain',
-        'description'
+        'description',
+        'user_id'
     ];
     public function pictures()
     {
