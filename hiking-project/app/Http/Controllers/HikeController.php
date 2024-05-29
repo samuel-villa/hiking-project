@@ -51,6 +51,16 @@ class HikeController extends Controller
         return view('add-hike', ['request' => $request]);
     }
 
+    public function show_edit_hike(Request $request, $id)
+    {
+        $hike = Hike::findOrFail($id);
+        
+        return view('show-edit-hike', [
+            'request' => $request,
+            'hike' => $hike,
+        ]);
+    }
+
     public function create(Request $request)
     {
         // $validatedData = $request->validate([
@@ -92,5 +102,19 @@ class HikeController extends Controller
         // }
 
         return redirect()->route('home');
+    }
+
+    public function edit(Request $request, $hike)
+    {
+        Hike::where('id', $hike->id)
+        ->update([
+            'name' => $request->input('name'),
+            'distance' => $request->input('distance'),
+            'duration' => $request->input('duration'),
+            'elevation_gain' => $request->input('elevation_gain'),
+            'description' => $request->input('description'),
+            'trail_rank' => '100',
+        ]);
+        return redirect()->route('show-hike', ['id' => $hike->id]);
     }
 }

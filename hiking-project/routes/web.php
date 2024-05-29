@@ -31,7 +31,8 @@ Route::get('/home', [HikeController::class, 'show'])->name('home');
 Route::prefix('/hike')->controller(HikeController::class)->group(function () {  // prefix all routes within this parent route (idem for names)
     Route::get('/add-hike', 'show_add_hike')->name('add-hike');
     Route::get('/{id}', 'show_hike')->name('show-hike');
-    Route::get('/', 'add_picture')->name('add-picture');
+    Route::get('/{id}/edit', 'show_edit_hike')->name('show-edit-hike');
+    // Route::post('/', 'edit')->name('edit');
     Route::post('/', 'create')->name('create');
 });
 
