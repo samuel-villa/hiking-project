@@ -35,12 +35,14 @@ class HikeController extends Controller
 
     public function show_hike(string $id)
     {
-        $hike = Hike::findOrFail($id);
+        $hike = Hike::with(['pictures', 'tags'])->findOrFail($id);
+        $imagePaths = $hike->pictures->pluck('image_path');
         // if ($post->slug !== $slug) {
         //     return to_route('blog.show', ['slug' => $post->slug, 'id' => $post->id]);
         // }
         return view('hike-detail', [
-            'hike' => $hike
+            'hike' => $hike,
+            'imagePaths' => $imagePaths
         ]);
     }
 
