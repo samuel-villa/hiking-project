@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use App\Models\Hike;
 
 
@@ -26,6 +27,10 @@ class HikeController extends Controller
         $hikes = Hike::with(['pictures' => function ($query) {
             $query->orderBy('id')->limit(1);
         }, 'tags'])->paginate(8);
+
+        $hikes->each(function ($hike) {
+            $hike->short_description = Str::limit($hike->description, 200);
+        });
 
         return view('home', [
             'hikes' => $hikes
@@ -73,7 +78,7 @@ class HikeController extends Controller
             'description' => $request->input('description'),
             'trail_rank' => '100',
             'user_id' => $userId,
-        
+
         ]);
 
         return redirect()->route('home');
