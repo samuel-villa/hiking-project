@@ -25,7 +25,7 @@ class HikeController extends Controller
     {
         $hikes = Hike::with(['pictures' => function ($query) {
             $query->orderBy('id')->limit(1);
-        }, 'tags'])->paginate(1);
+        }, 'tags'])->paginate(8);
 
         return view('hikes', [
             'hikes' => $hikes
