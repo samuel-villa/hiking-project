@@ -17,30 +17,32 @@
         <div class="container">
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 @foreach($hikes as $hike)
-                <div class="col">
-                    <div class="card">
-                        <figure class="figure m-0 w-100" style="height: 180px; overflow: hidden;">
-                            <img class="figure-img img-fluid" src="{{ $hike->pictures->first()->image_path }}" alt="{{ $hike->name }}" style="object-fit: cover; height: 100%; width: 100%;">
-                        </figure>
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $hike->name }}</h5>
-                            <p class="card-text">{{ $hike->description }}</p>
-                            <h4>Distance</h4>
-                            <p class="testtest">{{ $hike->distance }}</p>
-                            <h4>Duration</h4>
-                            <p>{{ $hike->duration }}</p>
-                            <h4>Elevation gain</h4>
-                            <p>{{ $hike->elevation_gain }}</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Tags :
-                                @foreach ($hike->tags as $tag)
-                                    -  {{ $tag->name }}
-                                @endforeach
-                            </small>
+                <a style="text-decoration:none;" href="{{ route('show-hike', ['id' => $hike->id]) }}">
+                    <div class="col">
+                        <div class="card">
+                            <figure class="figure m-0 w-100" style="height: 180px; overflow: hidden;">
+                                <img class="figure-img img-fluid" src="{{ $hike->pictures->first()->image_path }}" alt="{{ $hike->name }}" style="object-fit: cover; height: 100%; width: 100%;">
+                            </figure>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $hike->name }}</h5>
+                                <p class="card-text">{{ $hike->description }}</p>
+                                <h4>Distance</h4>
+                                <p class="testtest">{{ $hike->distance }}</p>
+                                <h4>Duration</h4>
+                                <p>{{ $hike->duration }}</p>
+                                <h4>Elevation gain</h4>
+                                <p>{{ $hike->elevation_gain }}</p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Tags :
+                                    @foreach ($hike->tags as $tag)
+                                        -  {{ $tag->name }}
+                                    @endforeach
+                                </small>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
                 @endforeach
             </div>
         </div>
