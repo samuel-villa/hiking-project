@@ -71,27 +71,27 @@ class HikeController extends Controller
         // dd($request->input('name'));
         // dd($validatedData);
 
-        if ($request->hasFile('picture')) {
-            $picture = $request->file('picture');
-            $path = $picture->store('pictures', 'public'); // Store the picture in the 'public/pictures' directory
+        // if ($request->hasFile('picture')) {
+        //     $picture = $request->file('picture');
+        //     $path = $picture->store('pictures', 'public'); // Store the picture in the 'public/pictures' directory
 
 
-            $hike = Hike::create([
-                'name' => $request->input('name'),
-                'distance' => $request->input('distance'),
-                'duration' => $request->input('duration'),
-                'elevation_gain' => $request->input('elevation_gain'),
-                'description' => $request->input('description'),
-                'trail_rank' => '100',
-                'user_id' => $userId,
-            ]);
+        Hike::create([
+            'name' => $request->input('name'),
+            'distance' => $request->input('distance'),
+            'duration' => $request->input('duration'),
+            'elevation_gain' => $request->input('elevation_gain'),
+            'description' => $request->input('description'),
+            'trail_rank' => '100',
+            'user_id' => $userId,
+        ]);
 
             // Create the picture record
-            Picture::create([
-                'hike_id' => $hike->id,
-                'image_path' => $path,
-            ]);
-        }
+        //     Picture::create([
+        //         'hike_id' => $hike->id,
+        //         'image_path' => $path,
+        //     ]);
+        // }
 
         return redirect()->route('home');
     }
