@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 use App\Models\Hike;
+use App\Models\Picture;
 
 
 class HikeController extends Controller
@@ -28,32 +28,19 @@ class HikeController extends Controller
             $query->orderBy('id')->limit(1);
         }, 'tags'])->paginate(8);
 
-        $hikes->each(function ($hike) {
-            $hike->short_description = Str::limit($hike->description, 200);
-        });
-
         return view('home', [
             'hikes' => $hikes
         ]);
     }
-    public function getHikeImages($id)
-    {
-        $hike = Hike::with('pictures')->findOrFail($id);
-        $imagePaths = $hike->pictures->pluck('image_path');
-
-        return response()->json($imagePaths);
-    }
 
     public function show_hike(string $id)
     {
-        $hike = Hike::with(['pictures', 'tags'])->findOrFail($id);
-        $imagePaths = $hike->pictures->pluck('image_path');
+        $hike = Hike::findOrFail($id);
         // if ($post->slug !== $slug) {
         //     return to_route('blog.show', ['slug' => $post->slug, 'id' => $post->id]);
         // }
         return view('hike-detail', [
-            'hike' => $hike,
-            'imagePaths' => $imagePaths
+            'hike' => $hike
         ]);
     }
 
@@ -64,7 +51,6 @@ class HikeController extends Controller
 
     public function add_picture(Request $request)
     {
-
     }
 
     public function create(Request $request)
@@ -81,19 +67,31 @@ class HikeController extends Controller
 
         $userId = Auth::id();
 
+        // dd($request);
         // dd($request->input('name'));
         // dd($validatedData);
 
-        Hike::create([
-            'name' => $request->input('name'),
-            'distance' => $request->input('distance'),
-            'duration' => $request->input('duration'),
-            'elevation_gain' => $request->input('elevation_gain'),
-            'description' => $request->input('description'),
-            'trail_rank' => '100',
-            'user_id' => $userId,
+        if ($request->hasFile('picture')) {
+            $picture = $request->file('picture');
+            $path = $picture->store('pictures', 'public'); // Store the picture in the 'public/pictures' directory
 
-        ]);
+
+            $hike = Hike::create([
+                'name' => $request->input('name'),
+                'distance' => $request->input('distance'),
+                'duration' => $request->input('duration'),
+                'elevation_gain' => $request->input('elevation_gain'),
+                'description' => $request->input('description'),
+                'trail_rank' => '100',
+                'user_id' => $userId,
+            ]);
+
+            // Create the picture record
+            Picture::create([
+                'hike_id' => $hike->id,
+                'image_path' => $path,
+            ]);
+        }
 
         return redirect()->route('home');
     }
