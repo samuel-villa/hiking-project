@@ -33,10 +33,10 @@
             <textarea id="description" class="form-control" name="description" rows="4" cols="50" maxlength="500" placeholder="Enter description"></textarea>
         </div>
     
-        <div class="mb-3">
+        {{-- <div class="mb-3">
             <label for="picture" class="form-label">Picture</label>
             <input type="file" class="form-control" id="picture" name="picture">
-        </div>
+        </div> --}}
 
         <div class="mb-3"><button type="submit" class="btn btn-primary">Save Hike</button></div>
 
