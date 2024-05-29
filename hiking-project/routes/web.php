@@ -26,10 +26,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/hikes', [HikeController::class, 'show']);
+Route::get('/hikes', [HikeController::class, 'show'])->name('hikes');
 
 Route::prefix('/hike')->controller(HikeController::class)->group(function () {  // prefix all routes within this parent route (idem for names)
-
     Route::get('/add-hike', 'show_add_hike')->name('add-hike');
     Route::post('/', 'create')->name('create');
 });

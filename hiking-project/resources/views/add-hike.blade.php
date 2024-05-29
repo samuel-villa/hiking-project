@@ -9,33 +9,33 @@
         @csrf
 
         <div class="mb-3">
-          <label for="title" class="form-label">Name</label>
-          <input type="text" class="form-control" id="title">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" name="name">
         </div>
+
         <div class="mb-3">
             <label for="distance" class="form-label">Distance</label>
-            <input type="text" class="form-control" id="distance">
+            <input type="text" class="form-control" id="distance" name="distance">
         </div>
     
         <div class="mb-3">
             <label for="duration" class="form-label">Duration</label>
-            <input type="text" class="form-control" id="duration">
+            <input type="text" class="form-control" id="duration" name="duration">
         </div>
     
         <div class="mb-3">
             <label for="elevation_gain" class="form-label">Elevation</label>
-            <input type="text" class="form-control" id="elevation_gain">
+            <input type="text" class="form-control" id="elevation_gain" name="elevation_gain">
         </div>
     
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
-            <textarea id="description" class="form-control" name="hike-description" rows="4" cols="50" maxlength="500" placeholder="Enter description"></textarea>
+            <textarea id="description" class="form-control" name="description" rows="4" cols="50" maxlength="500" placeholder="Enter description"></textarea>
         </div>
     
-        <div class="mb-3"><button type="submit" class="btn btn-primary">Add Picture</button></div>
+        {{-- <div class="mb-3"><button type="submit" class="btn btn-primary">Add Picture</button></div> --}}
 
-        <div class="mb-3"><button type="submit" class="btn btn-primary">Submit</button></div>
-        {{-- <a href="{{ route('create', ['slug' => $post->slug, 'id' => $post->id]) }}" class="btn btn-primary">Save Hike</a> --}}
+        <div class="mb-3"><button type="submit" class="btn btn-primary">Save Hike</button></div>
 
     </form>
 </div>

@@ -39,27 +39,32 @@ class HikeController extends Controller
 
     public function create(Request $request)
     {
-        // Validate the incoming request data
-        $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'distance' => 'required|string|max:255',
-            'duration' => 'required|string|max:255',
-            'elevation_gain' => 'required|string|max:255',
-            'description' => 'required',
-        ]);
+        // $validatedData = $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'distance' => 'required|string|max:255',
+        //     'duration' => 'required|string|max:255',
+        //     'elevation_gain' => 'required|string|max:255',
+        //     'description' => 'required',
+        //     'trail_rank' => 'required',
+        //     'user_id' => 'required',
+        // ]);
 
         $userId = Auth::id();
 
-        Hike::create([
-            'title' => $validatedData['title'],
-            'distance' => $validatedData['distance'],
-            'duration' => $validatedData['duration'],
-            'elevation_gain' => $validatedData['elevation_gain'],
-            'description' => $validatedData['description'],
-            'user_id' => $userId,
+        // dd($request->input('name'));
+        // dd($validatedData);
 
+        Hike::create([
+            'name' => $request->input('name'),
+            'distance' => $request->input('distance'),
+            'duration' => $request->input('duration'),
+            'elevation_gain' => $request->input('elevation_gain'),
+            'description' => $request->input('description'),
+            'trail_rank' => '100',
+            'user_id' => $userId,
+        
         ]);
 
-        return redirect()->route('hikes')->with('success', 'Hike created successfully.');
+        return redirect()->route('hikes');
     }
 }
