@@ -36,15 +36,24 @@ class HikeController extends Controller
             'hikes' => $hikes
         ]);
     }
+    public function getHikeImages($id)
+    {
+        $hike = Hike::with('pictures')->findOrFail($id);
+        $imagePaths = $hike->pictures->pluck('image_path');
+
+        return response()->json($imagePaths);
+    }
 
     public function show_hike(string $id)
     {
-        $hike = Hike::findOrFail($id);
+        $hike = Hike::with(['pictures', 'tags'])->findOrFail($id);
+        $imagePaths = $hike->pictures->pluck('image_path');
         // if ($post->slug !== $slug) {
         //     return to_route('blog.show', ['slug' => $post->slug, 'id' => $post->id]);
         // }
         return view('hike-detail', [
-            'hike' => $hike
+            'hike' => $hike,
+            'imagePaths' => $imagePaths
         ]);
     }
 
@@ -55,7 +64,7 @@ class HikeController extends Controller
 
     public function add_picture(Request $request)
     {
-        
+
     }
 
     public function create(Request $request)

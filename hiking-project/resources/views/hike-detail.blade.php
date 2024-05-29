@@ -18,9 +18,13 @@
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 <div class="col">
                     <div class="card">
+
+                        @foreach ($imagePaths as $index => $imagePath)
                         <figure class="figure m-0 w-100" style="height: 180px; overflow: hidden;">
-                            <img class="figure-img img-fluid" src="{{ $hike->pictures->first()->image_path }}" alt="{{ $hike->name }}" style="object-fit: cover; height: 100%; width: 100%;">
+                            <img class="figure-img img-fluid" src="{{ $hike->image_path }}" alt="{{ $hike->name }}" style="object-fit: cover; height: 100%; width: 100%;">
                         </figure>
+                        @endforeach
+
                         <div class="card-body">
                             <h5 class="card-title">{{ $hike->name }}</h5>
                             <p class="card-text">{{ $hike->description }}</p>
