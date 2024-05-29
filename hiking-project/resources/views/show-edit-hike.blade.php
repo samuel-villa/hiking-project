@@ -3,35 +3,35 @@
 <div class="container">
 
     <div>
-        <h1>Add a new hike</h1>
+        <h1>Edit hike</h1>
     </div>
 
-    <form action="{{ route('create') }}" method="POST">
+    <form action="{{ route('edit', ['request' => $request, 'id' => $hike->id]) }}" method="POST">
         @csrf
 
         <div class="mb-3">
           <label for="name" class="form-label">Name</label>
-          <input type="text" class="form-control" id="name" name="name">
+          <input type="text" class="form-control" id="name" name="name" value="{{ $hike->name }}">
         </div>
 
         <div class="mb-3">
             <label for="distance" class="form-label">Distance</label>
-            <input type="text" class="form-control" id="distance" name="distance">
+            <input type="text" class="form-control" id="distance" name="distance" value="{{ $hike->distance }}">
         </div>
     
         <div class="mb-3">
             <label for="duration" class="form-label">Duration</label>
-            <input type="text" class="form-control" id="duration" name="duration">
+            <input type="text" class="form-control" id="duration" name="duration" value="{{ $hike->duration }}">
         </div>
     
         <div class="mb-3">
             <label for="elevation_gain" class="form-label">Elevation</label>
-            <input type="text" class="form-control" id="elevation_gain" name="elevation_gain">
+            <input type="text" class="form-control" id="elevation_gain" name="elevation_gain" value="{{ $hike->elevation_gain }}">
         </div>
     
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
-            <textarea id="description" class="form-control" name="description" rows="4" cols="50" maxlength="500" placeholder="Enter description"></textarea>
+            <textarea id="description" class="form-control" name="description" rows="4" cols="50" maxlength="500">{{ old('description', $hike->description ?? '') }}</textarea>
         </div>
     
         {{-- <div class="mb-3">
