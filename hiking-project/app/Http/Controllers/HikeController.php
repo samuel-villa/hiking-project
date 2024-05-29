@@ -27,8 +27,19 @@ class HikeController extends Controller
             $query->orderBy('id')->limit(1);
         }, 'tags'])->paginate(8);
 
-        return view('hikes', [
+        return view('home', [
             'hikes' => $hikes
+        ]);
+    }
+
+    public function show_hike(string $id)
+    {
+        $hike = Hike::findOrFail($id);
+        // if ($post->slug !== $slug) {
+        //     return to_route('blog.show', ['slug' => $post->slug, 'id' => $post->id]);
+        // }
+        return view('hike-detail', [
+            'hike' => $hike
         ]);
     }
 
@@ -65,6 +76,6 @@ class HikeController extends Controller
         
         ]);
 
-        return redirect()->route('hikes');
+        return redirect()->route('home');
     }
 }
