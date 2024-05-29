@@ -10,8 +10,9 @@
 </head>
 <body>
 
-    @include('partials/header')
 
+
+    @include('partials/header')
 
 
 @foreach($hikes as $hike)
@@ -44,6 +45,8 @@
         @endif
     </article>
 @endforeach
+
+    {{$hikes->links()}}
 
 @include('partials/footer')
 

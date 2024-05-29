@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Hike;
 
+
 class HikeController extends Controller
 {
     public function showHikesPage()
@@ -24,7 +25,7 @@ class HikeController extends Controller
     {
         $hikes = Hike::with(['pictures' => function ($query) {
             $query->orderBy('id')->limit(1);
-        }, 'tags'])->paginate(10);
+        }, 'tags'])->paginate(1);
 
         return view('hikes', [
             'hikes' => $hikes
@@ -56,7 +57,7 @@ class HikeController extends Controller
             'elevation_gain' => $validatedData['elevation_gain'],
             'description' => $validatedData['description'],
             'user_id' => $userId,
-        
+
         ]);
 
         return redirect()->route('hikes')->with('success', 'Hike created successfully.');
