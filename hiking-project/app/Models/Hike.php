@@ -15,8 +15,10 @@ class Hike extends Model
         'duration',
         'elevation_gain',
         'description',
+        'trail_rank',
         'user_id'
     ];
+    
     public function pictures()
     {
         return $this->hasMany(Picture::class);
