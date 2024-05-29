@@ -53,6 +53,11 @@ class HikeController extends Controller
         return view('add-hike', ['request' => $request]);
     }
 
+    public function add_picture(Request $request)
+    {
+        
+    }
+
     public function create(Request $request)
     {
         // $validatedData = $request->validate([
