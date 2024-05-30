@@ -11,72 +11,79 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
     <title>{{ $hike->name }}</title>
+
 </head>
 <body>
 
     @include('partials/header')
 
-        <div class="container">
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-                <div class="col">
-                    <div class="card">
 
-{{--                        @foreach ($imagePaths as $index => $imagePath)--}}
-{{--                        <figure class="figure m-0 w-100" style="height: 180px; overflow: hidden;">--}}
-{{--                            <img class="figure-img img-fluid" src="{{ $imagePath }}" alt="{{ $hike->name }}" style="object-fit: cover; height: 100%; width: 100%;">--}}
-{{--                        </figure>--}}
-{{--                        @endforeach--}}
-
-
-                        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                            <ol class="carousel-indicators">
-                                @foreach ($imagePaths as $index => $imagePath)
-                                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $index }}" class="@if ($index === 0) active @endif"></li>
-                                @endforeach
-                            </ol>
-                            <div class="carousel-inner">
-                                @foreach ($imagePaths as $index => $imagePath)
-                                    <div class="carousel-item @if ($index === 0) active @endif">
-                                        <img class="d-block w-100" src="{{ $imagePath }}" alt="Slide {{ $index + 1 }}">
-                                    </div>
-                                @endforeach
-                            </div>
-                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </a>
+    <div class="container">
+        <div class="card" style="max-width: 1400px;">
+            <div class="row g-0">
+                <div class="col-sm-5">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                        <ol class="carousel-indicators" >
+                            @foreach ($imagePaths as $index => $imagePath)
+                                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $index }}" class="@if ($index === 0) active @endif"></li>
+                            @endforeach
+                        </ol>
+                        <div class="carousel-inner">
+                            @foreach ($imagePaths as $index => $imagePath)
+                                <div style="max-height: 600px;" class="carousel-item  @if ($index === 0) active @endif">
+                                    <img class="d-block w-100"  src="{{ $imagePath }}" alt="Slide {{ $index + 1 }}">
+                                </div>
+                            @endforeach
                         </div>
-
-
-
-
-
-
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $hike->name }}</h5>
-                            <p class="card-text">{{ $hike->description }}</p>
-                            <h4>Distance</h4>
-                            <p class="testtest">{{ $hike->distance }}</p>
-                            <h4>Duration</h4>
-                            <p>{{ $hike->duration }}</p>
-                            <h4>Elevation gain</h4>
-                            <p>{{ $hike->elevation_gain }}</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Tags :
-                                @foreach ($hike->tags as $tag)
-                                    -  {{ $tag->name }}
-                                @endforeach
-                            </small>
-                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </a>
                     </div>
+
+                </div>
+                <div class="col-sm-7">
+                    <div class="card-body" style="min-height: 600px;">
+                        <h2 class="card-title">{{ $hike->name }}</h2>
+                        <p class="card-text">{{ $hike->description }}</p>
+                    </div>
+                </div>
+                <div class="table-responsive p-0 m-0">
+                    <table class="table table-bordered  m-0">
+                        <thead>
+                        <tr>
+                            <th class="text-center fw-bold m-0">TrailRank</th>
+                            <th class="text-center fw-bold m-0">Distance</th>
+                            <th class="text-center fw-bold m-0">Duration</th>
+                            <th class="text-center fw-bold m-0">Elevation</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="text-center">{{ $hike->trail_rank }}</td>
+                            <td class="text-center">{{ $hike->distance }}</td>
+                            <td class="text-center">{{ $hike->duration }}</td>
+                            <td class="text-center">{{ $hike->elevation_gain }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card-footer">
+                    <small class="text-muted">Tags:
+                        @foreach ($hike->tags as $tag)
+                            - {{ $tag->name }}
+                        @endforeach
+                    </small>
                 </div>
             </div>
         </div>
+    </div>
+
 
 
 @include('partials/footer')
