@@ -7,29 +7,28 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Hike;
 use App\Models\Picture;
+use App\Models\Tag;
 
 
 class HikeController extends Controller
 {
-    public function showHikesPage()
-    {
-        $filePath = '../resources/views/hikes.blade.php';
-        if (File::exists($filePath)) {
-            $content = file_get_contents($filePath);
-            return response($content);
-        } else {
-            return response('File not found baby', 404);
-        }
-    }
-
     public function show()
     {
         $hikes = Hike::with(['pictures' => function ($query) {
             $query->orderBy('id')->limit(1);
         }, 'tags'])->paginate(8);
 
+        $tags_difficulty = Tag::where('type', 'difficulty')->get();
+        $tags_distance = Tag::where('type', 'distance')->get();
+        $tags_terrain = Tag::where('type', 'terrain')->get();
+        $tags_loop = Tag::where('type', 'loop')->get();
+
         return view('home', [
-            'hikes' => $hikes
+            'hikes' => $hikes,
+            'tags_difficulty' => $tags_difficulty,
+            'tags_distance' => $tags_distance,
+            'tags_terrain' => $tags_terrain,
+            'tags_loop' => $tags_loop
         ]);
     }
 

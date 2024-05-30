@@ -16,7 +16,50 @@
 
     @include('partials/header')
 
-        <div class="container">
+    {{-- @dd($tags_difficulty) --}}
+    <div class="container">
+        <div class="d-flex justify-content-around my-5">
+            <div class="btn-group">
+                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Difficulty
+                </button>
+                <ul class="dropdown-menu">
+                    @foreach ($tags_difficulty as $tag)
+                        <li>{{ $tag->name }}</li>
+                    @endforeach
+                </ul>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Distance
+                </button>
+                <ul class="dropdown-menu">
+                    @foreach ($tags_distance as $tag)
+                        <li>{{ $tag->name }}</li>
+                    @endforeach
+                </ul>
+            </div>
+    
+            <div class="btn-group">
+                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Terrain
+                </button>
+                <ul class="dropdown-menu">
+                    @foreach ($tags_terrain as $tag)
+                        <li>{{ $tag->name }}</li>
+                    @endforeach
+                </ul>
+            </div>
+    
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                <label class="form-check-label" for="flexCheckChecked">
+                  Loop
+                </label>
+              </div>
+        </div>
+
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 @foreach($hikes as $hike)
                 <a style="text-decoration:none;" href="{{ route('show-hike', ['id' => $hike->id]) }}">
@@ -65,7 +108,3 @@
 
 </body>
 </html>
-
-
-
-
