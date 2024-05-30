@@ -22,19 +22,22 @@
         <div class="card" style="max-width: 1400px;">
             <div class="row g-0">
                 <div class="col-sm-5">
+                    @if (count($imagePaths) > 1)
                     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                         <ol class="carousel-indicators" >
                             @foreach ($imagePaths as $index => $imagePath)
                                 <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $index }}" class="@if ($index === 0) active @endif"></li>
                             @endforeach
                         </ol>
-                        <div class="carousel-inner">
-                            @foreach ($imagePaths as $index => $imagePath)
+                        @foreach ($imagePaths as $index => $imagePath)
+                        
+                            <div class="carousel-inner">
                                 <div style="max-height: 600px;" class="carousel-item  @if ($index === 0) active @endif">
                                     <img class="d-block w-100"  src="{{ $imagePath }}" alt="Slide {{ $index + 1 }}">
                                 </div>
-                            @endforeach
-                        </div>
+                            </div>
+                        
+                        @endforeach
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
@@ -44,6 +47,12 @@
                             <span class="visually-hidden">Next</span>
                         </a>
                     </div>
+                    @else
+                        <img class="figure-img img-fluid"
+                                        src="{{ str_starts_with($imagePaths[0], 'images')   ? asset('storage/' . $imagePaths[0]) : asset($imagePaths[0]) }}"
+                                        alt="{{ $hike->name }}"
+                                        style="object-fit: cover; height: 100%; width: 100%;">
+                    @endif
 
                 </div>
                 <div class="col-sm-7">

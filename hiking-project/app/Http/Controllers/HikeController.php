@@ -90,7 +90,6 @@ class HikeController extends Controller
         ]);
 
         if ($request->picture) {
-            // $path = $picture->store('images', 'public'); // Store the picture in the 'public/images' directory
             $path = $request->file('picture')->store('images', 'public');
 
             // Create the picture record
