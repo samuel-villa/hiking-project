@@ -33,6 +33,11 @@
             <label for="description" class="form-label">Description</label>
             <textarea id="description" class="form-control" name="description" rows="4" cols="50" maxlength="500">{{ old('description', $hike->description ?? '') }}</textarea>
         </div>
+
+        <div class="mb-3">
+            <label for="trail_rank" class="form-label">Rate</label>
+            <input type="text" class="form-control" id="trail_rank" name="trail_rank" value="{{ $hike->trail_rank }}">
+        </div>
     
         {{-- <div class="mb-3">
             <label for="picture" class="form-label">Picture</label>

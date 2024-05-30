@@ -85,7 +85,7 @@ class HikeController extends Controller
             'duration' => $request->input('duration'),
             'elevation_gain' => $request->input('elevation_gain'),
             'description' => $request->input('description'),
-            'trail_rank' => '100',
+            'trail_rank' => $request->input('trail_rank'),
             'user_id' => $userId,
         ]);
 
@@ -111,7 +111,7 @@ class HikeController extends Controller
                 'duration' => $request->input('duration'),
                 'elevation_gain' => $request->input('elevation_gain'),
                 'description' => $request->input('description'),
-                'trail_rank' => '100',
+                'trail_rank' => $request->input('trail_rank'),
             ]);
         return redirect()->route('show-hike', ['id' => $id]);
     }
