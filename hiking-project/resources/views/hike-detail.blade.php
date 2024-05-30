@@ -22,7 +22,10 @@
         <div class="card" style="max-width: 1400px;">
             <div class="row g-0">
                 <div class="col-sm-5">
-                    @if (count($imagePaths) > 1)
+                    @if (count($imagePaths) == 0)
+                    <img class="figure-img img-fluid" src="{{ asset('images/no_image.png') }}" alt="{{ $hike->name }}" style="object-fit: cover; height: 100%; width: 100%;">
+
+                    @elseif (count($imagePaths) > 1)
                     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                         <ol class="carousel-indicators" >
                             @foreach ($imagePaths as $index => $imagePath)
