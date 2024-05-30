@@ -54,7 +54,7 @@ class HikeController extends Controller
     public function show_edit_hike(Request $request, $id)
     {
         $hike = Hike::findOrFail($id);
-        
+
         return view('show-edit-hike', [
             'request' => $request,
             'hike' => $hike,
@@ -77,29 +77,29 @@ class HikeController extends Controller
 
         // dd($request);
         // dd($request->input('name'));
-        // dd($validatedData);
+        // dd($request->picture);
 
-        // if ($request->hasFile('picture')) {
-        //     $picture = $request->file('picture');
-        //     $path = $picture->store('pictures', 'public'); // Store the picture in the 'public/pictures' directory
+        if ($request->picture) {
+            // $path = $picture->store('images', 'public'); // Store the picture in the 'public/images' directory
+            $path = $request->file('picture')->store('images', 'public');
 
-
-        Hike::create([
-            'name' => $request->input('name'),
-            'distance' => $request->input('distance'),
-            'duration' => $request->input('duration'),
-            'elevation_gain' => $request->input('elevation_gain'),
-            'description' => $request->input('description'),
-            'trail_rank' => '100',
-            'user_id' => $userId,
-        ]);
+            $hike = Hike::create([
+                'name' => $request->input('name'),
+                'distance' => $request->input('distance'),
+                'duration' => $request->input('duration'),
+                'elevation_gain' => $request->input('elevation_gain'),
+                'description' => $request->input('description'),
+                'trail_rank' => '100',
+                'user_id' => $userId,
+            ]);
 
             // Create the picture record
-        //     Picture::create([
-        //         'hike_id' => $hike->id,
-        //         'image_path' => $path,
-        //     ]);
-        // }
+            Picture::create([
+                'hike_id' => $hike->id,
+                'image_path' => $path,
+            ]);
+
+        }
 
         return redirect()->route('home');
     }
@@ -107,14 +107,14 @@ class HikeController extends Controller
     public function edit(Request $request, $hike)
     {
         Hike::where('id', $hike->id)
-        ->update([
-            'name' => $request->input('name'),
-            'distance' => $request->input('distance'),
-            'duration' => $request->input('duration'),
-            'elevation_gain' => $request->input('elevation_gain'),
-            'description' => $request->input('description'),
-            'trail_rank' => '100',
-        ]);
+            ->update([
+                'name' => $request->input('name'),
+                'distance' => $request->input('distance'),
+                'duration' => $request->input('duration'),
+                'elevation_gain' => $request->input('elevation_gain'),
+                'description' => $request->input('description'),
+                'trail_rank' => '100',
+            ]);
         return redirect()->route('show-hike', ['id' => $hike->id]);
     }
 }

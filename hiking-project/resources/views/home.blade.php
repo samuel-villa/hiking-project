@@ -24,7 +24,7 @@
                         <div class="card">
                             <figure class="figure m-0 w-100" style="height: 280px; overflow: hidden;">
                                 @if ($hike->pictures->isNotEmpty() && $hike->pictures->first()->image_path)
-                                    <img class="figure-img img-fluid" src="{{ $hike->pictures->first()->image_path }}" alt="{{ $hike->name }}" style="object-fit: cover; height: 100%; width: 100%;">
+                                    <img class="figure-img img-fluid" src="{{ asset('storage/' . $hike->pictures->first()->image_path) }}" alt="{{ $hike->name }}" style="object-fit: cover; height: 100%; width: 100%;">
                                 @else
                                     <img class="figure-img img-fluid" src="{{ asset('images/no_image.png') }}" alt="{{ $hike->name }}" style="object-fit: cover; height: 100%; width: 100%;">
                                 @endif

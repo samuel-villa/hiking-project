@@ -6,7 +6,7 @@
         <h1>Add a new hike</h1>
     </div>
 
-    <form action="{{ route('create') }}" method="POST">
+    <form action="{{ route('create') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="mb-3">
@@ -34,13 +34,14 @@
             <textarea id="description" class="form-control" name="description" rows="4" cols="50" maxlength="500" placeholder="Enter description"></textarea>
         </div>
     
-        {{-- <div class="mb-3">
+        <div class="mb-3">
             <label for="picture" class="form-label">Picture</label>
             <input type="file" class="form-control" id="picture" name="picture">
-        </div> --}}
+        </div>
 
-        <div class="mb-3"><bu
-            tton type="submit" class="btn btn-primary">Save Hike</bu></div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Save Hike</button>
+        </div>
 
     </form>
 </div>
