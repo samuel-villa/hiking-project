@@ -59,7 +59,6 @@
             </div>
         </div>
 
-
     {{$hikes->links()}}
 
 @include('partials/footer')
