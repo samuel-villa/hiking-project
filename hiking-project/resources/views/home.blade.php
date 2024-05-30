@@ -10,7 +10,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Document</title>
 </head>
-<body>
+<body style="background-color: #f7fafc;">
+
 
     @include('partials/header')
 
@@ -90,17 +91,18 @@
                 <a style="text-decoration:none;" href="{{ route('show-hike', ['id' => $hike->id]) }}">
                     <div class="col">
                         <div class="card">
-                            <figure class="figure m-0 w-100" style="height: 280px; overflow: hidden;">
+                            <figure class="figure m-0 w-100 " style="height: 280px; overflow: hidden;">
                                 @if ($hike->pictures->isNotEmpty() && $hike->pictures->first()->image_path)
-                                @php
-                                    $imagePath = $hike->pictures->first()->image_path;
-                                @endphp
+                                    @php
+                                        $imagePath = $hike->pictures->first()->image_path;
+                                    @endphp
                                     <img class="figure-img img-fluid"
                                          src="{{ str_starts_with($imagePath, 'images')   ? asset('storage/' . $imagePath) : asset($imagePath) }}"
                                          alt="{{ $hike->name }}"
-                                         style="object-fit: cover; height: 100%; width: 100%;">
+                                         style="object-fit: cover; height: 100%; width: 100%; border-radius:5px 5px 0px 0px; overflow: hidden;"
+                                    >
                                 @else
-                                    <img class="figure-img img-fluid" src="{{ asset('images/no_image.png') }}" alt="{{ $hike->name }}" style="object-fit: cover; height: 100%; width: 100%;">
+                                    <img class="figure-img img-fluid" src="{{ asset('images/no_image.png') }}" alt="{{ $hike->name }}" style="object-fit: cover; height: 100%; width: 100%;border-radius:5px 5px 0px 0px;">
                                 @endif
                             </figure>
                             <div class="card-body">

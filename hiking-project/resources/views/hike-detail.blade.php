@@ -18,29 +18,29 @@
     @include('partials/header')
 
 
-    <div class="container">
-        <div class="card" style="max-width: 1400px;">
-            <div class="row g-0">
-                <div class="col-sm-5">
-                    @if (count($imagePaths) == 0)
-                        <img class="figure-img img-fluid" src="{{ asset('images/no_image.png') }}" alt="{{ $hike->name }}" style="object-fit: cover; height: 100%; width: 100%;">
-
-                    @elseif (count($imagePaths) > 1)
+    <<div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title text-center "><strong>{{ $hike->name }}</strong></h2>
+                <p class="card-text my-3 ">{{ $hike->description }}</p>
+            </div>
+            <div style="max-height: 600px;">
+                @if (count($imagePaths) == 0)
+                    <img class="figure-img img-fluid" src="{{ asset('images/no_image.png') }}" alt="{{ $hike->name }}" style="width:100%; height:100%; object-fit: cover;">
+                @elseif (count($imagePaths) > 1)
                     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                        <ol class="carousel-indicators" >
+                        <ol class="carousel-indicators">
                             @foreach ($imagePaths as $index => $imagePath)
                                 <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $index }}" class="@if ($index === 0) active @endif"></li>
                             @endforeach
                         </ol>
-                        @foreach ($imagePaths as $index => $imagePath)
-                        
-                            <div class="carousel-inner">
-                                <div style="max-height: 600px;" class="carousel-item  @if ($index === 0) active @endif">
-                                    <img class="d-block w-100"  src="{{ $imagePath }}" alt="Slide {{ $index + 1 }}">
+                        <div class="carousel-inner">
+                            @foreach ($imagePaths as $index => $imagePath)
+                                <div style="max-height: 600px; object-fit: cover;" class="carousel-item @if ($index === 0) active @endif">
+                                    <img class="d-block w-100" src="{{ $imagePath }}" alt="Slide {{ $index + 1 }}">
                                 </div>
-                            </div>
-                        
-                        @endforeach
+                            @endforeach
+                        </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
@@ -50,56 +50,48 @@
                             <span class="visually-hidden">Next</span>
                         </a>
                     </div>
-                    @else
-                        <img class="figure-img img-fluid"
-                                        src="{{ str_starts_with($imagePaths[0], 'images')   ? asset('storage/' . $imagePaths[0]) : asset($imagePaths[0]) }}"
-                                        alt="{{ $hike->name }}"
-                                        style="object-fit: cover; height: 100%; width: 100%;">
-                    @endif
-
-                </div>
-                <div class="col-sm-7">
-                    <div class="card-body" style="min-height: 600px;">
-                        <h2 class="card-title">{{ $hike->name }}</h2>
-                        <p class="card-text">{{ $hike->description }}</p>
-                    </div>
-                </div>
-                <div class="table-responsive p-0 m-0">
-                    <table class="table table-bordered  m-0">
-                        <thead>
-                        <tr>
-                            <th class="text-center fw-bold m-0">TrailRank</th>
-                            <th class="text-center fw-bold m-0">Distance</th>
-                            <th class="text-center fw-bold m-0">Duration</th>
-                            <th class="text-center fw-bold m-0">Elevation</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td class="text-center">{{ $hike->trail_rank }}</td>
-                            <td class="text-center">{{ $hike->distance }}</td>
-                            <td class="text-center">{{ $hike->duration }}</td>
-                            <td class="text-center">{{ $hike->elevation_gain }}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="card-footer">
-                    <small class="text-muted">Tags:
-                        @foreach ($hike->tags as $tag)
-                            - {{ $tag->name }}
-                        @endforeach
-                    </small>
-                </div>
+                @else
+                    <img class="figure-img img-fluid" src="{{ str_starts_with($imagePaths[0], 'images') ? asset('storage/' . $imagePaths[0]) : asset($imagePaths[0]) }}" alt="{{ $hike->name }}" style="object-fit: cover; height: 100%; width: 100%;">
+                @endif
             </div>
-        </div>
 
+            <div class="table-responsive p-0 m-0">
+                <table class="table table-bordered m-0">
+                    <thead>
+                    <tr>
+                        <th class="text-center fw-bold m-0">TrailRank</th>
+                        <th class="text-center fw-bold m-0">Distance</th>
+                        <th class="text-center fw-bold m-0">Duration</th>
+                        <th class="text-center fw-bold m-0">Elevation</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="text-center">{{ $hike->trail_rank }}</td>
+                        <td class="text-center">{{ $hike->distance }}</td>
+                        <td class="text-center">{{ $hike->duration }}</td>
+                        <td class="text-center">{{ $hike->elevation_gain }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card-footer">
+                <small class="text-muted">Tags:
+                    @foreach ($hike->tags as $tag)
+                        - {{ $tag->name }}
+                    @endforeach
+                </small>
+            </div>
+
+        </div>
+    </div>
+    <div class="container my-3">
         @if (Auth::id() && Auth::id() == $hike->user_id)
             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-              <a href="{{ route('show-edit-hike', ['id' => $hike->id]) }}">
-                <button type="button" class="btn btn-success">Edit Hike</button>
-              </a>
+                <a href="{{ route('show-edit-hike', ['id' => $hike->id]) }}">
+                    <button type="button" class="btn btn-success">Edit Hike</button>
+                </a>
             </div>
             @include('partials/delete-hike-modal')
         @endif
@@ -107,7 +99,8 @@
 
 
 
-@include('partials/footer')
+
+    @include('partials/footer')
 
 </body>
 </html>
