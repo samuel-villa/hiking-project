@@ -60,7 +60,7 @@
                     @endforeach
                 </ul>
             </div>
-    
+
             <div class="btn-group">
                 <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Terrain
@@ -76,7 +76,7 @@
                     @endforeach
                 </ul>
             </div>
-    
+
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
                 <label class="form-check-label" for="flexCheckChecked">
@@ -104,15 +104,30 @@
                                 @endif
                             </figure>
                             <div class="card-body">
-                                <h5 class="card-title">{{ $hike->name }}</h5>
+                                <h3 class="card-title text-center my-2">{{ $hike->name }}</h3>
+                                <hr>
+                                <div class="row my-3 text-center">
+                                    <div class="col-md-6">
+                                        <h6><strong>Trail Rank</strong></h6>
+                                        <p>{{ $hike->trail_rank }}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6><strong>Distance</strong></h6>
+                                        <p>{{ $hike->distance }}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6><strong>Duration</strong></h6>
+                                        <p>{{ $hike->duration }}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6><strong>Elevation gain</strong></h6>
+                                        <p>{{ $hike->elevation_gain }}</p>
+                                    </div>
+                                </div>
+                                <h6 class="text-center"><strong>Description</strong></h6>
                                 <p class="card-text">{{ $hike->short_description}}</p>
-                                <h4>Distance</h4>
-                                <p class="testtest">{{ $hike->distance }}</p>
-                                <h4>Duration</h4>
-                                <p>{{ $hike->duration }}</p>
-                                <h4>Elevation gain</h4>
-                                <p>{{ $hike->elevation_gain }}</p>
                             </div>
+
                             <div class="card-footer">
                                 <small class="text-muted">Tags :
                                     @foreach ($hike->tags as $tag)
@@ -125,9 +140,11 @@
                 </a>
                 @endforeach
             </div>
+            <div class="my-5">
+                {{$hikes->links()}}
+            </div>
         </div>
 
-    {{$hikes->links()}}
 
 @include('partials/footer')
 

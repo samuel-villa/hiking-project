@@ -16,7 +16,7 @@ class HikeController extends Controller
     {
         $hikes = Hike::with(['pictures' => function ($query) {
             $query->orderBy('id')->limit(1);
-        }, 'tags'])->paginate(8);
+        }, 'tags'])->paginate(6);
 
         $tags_difficulty = Tag::where('type', 'difficulty')->get();
         $tags_distance = Tag::where('type', 'distance')->get();
@@ -29,6 +29,7 @@ class HikeController extends Controller
             'tags_distance' => $tags_distance,
             'tags_terrain' => $tags_terrain,
             'tags_loop' => $tags_loop
+
         ]);
     }
 

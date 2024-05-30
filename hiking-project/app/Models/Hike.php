@@ -18,7 +18,10 @@ class Hike extends Model
         'trail_rank',
         'user_id'
     ];
-    
+    public function getShortDescriptionAttribute()
+    {
+        return strlen($this->description) > 200 ? substr($this->description, 0, 200) . '...' : $this->description;
+    }
     public function pictures()
     {
         return $this->hasMany(Picture::class);
