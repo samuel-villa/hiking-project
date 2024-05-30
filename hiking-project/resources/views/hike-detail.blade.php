@@ -23,7 +23,7 @@
             <div class="row g-0">
                 <div class="col-sm-5">
                     @if (count($imagePaths) == 0)
-                    <img class="figure-img img-fluid" src="{{ asset('images/no_image.png') }}" alt="{{ $hike->name }}" style="object-fit: cover; height: 100%; width: 100%;">
+                        <img class="figure-img img-fluid" src="{{ asset('images/no_image.png') }}" alt="{{ $hike->name }}" style="object-fit: cover; height: 100%; width: 100%;">
 
                     @elseif (count($imagePaths) > 1)
                     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -94,13 +94,20 @@
                 </div>
             </div>
         </div>
+
+        @if (Auth::id() && Auth::id() == $hike->user_id)
+            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+              <a href="{{ route('show-edit-hike', ['id' => $hike->id]) }}">
+                <button type="button" class="btn btn-success">Edit Hike</button>
+              </a>
+            </div>
+          @endif
     </div>
 
 
 
 @include('partials/footer')
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
 
