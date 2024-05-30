@@ -6,7 +6,7 @@
         <h1>Edit hike</h1>
     </div>
 
-    <form action="{{ route('edit', ['request' => $request, 'id' => $hike->id]) }}" method="POST">
+    <form action="{{ route('edit', ['id' => $hike->id]) }}" method="POST">
         @csrf
 
         <div class="mb-3">
@@ -39,8 +39,7 @@
             <input type="file" class="form-control" id="picture" name="picture">
         </div> --}}
 
-        <div class="mb-3"><bu
-            tton type="submit" class="btn btn-primary">Save Hike</bu></div>
+        <div class="mb-3"><button type="submit" class="btn btn-primary">Save Hike</button></div>
 
     </form>
 </div>

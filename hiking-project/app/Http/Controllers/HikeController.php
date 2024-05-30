@@ -102,9 +102,9 @@ class HikeController extends Controller
         return redirect()->route('home');
     }
 
-    public function edit(Request $request, $hike)
+    public function edit(Request $request, $id)
     {
-        Hike::where('id', $hike->id)
+        Hike::where('id', $id)
             ->update([
                 'name' => $request->input('name'),
                 'distance' => $request->input('distance'),
@@ -113,6 +113,6 @@ class HikeController extends Controller
                 'description' => $request->input('description'),
                 'trail_rank' => '100',
             ]);
-        return redirect()->route('show-hike', ['id' => $hike->id]);
+        return redirect()->route('show-hike', ['id' => $id]);
     }
 }
