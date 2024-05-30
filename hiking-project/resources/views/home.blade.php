@@ -12,8 +12,6 @@
 </head>
 <body>
 
-
-
     @include('partials/header')
 
     {{-- @dd($tags_difficulty) --}}
@@ -25,7 +23,12 @@
                 </button>
                 <ul class="dropdown-menu">
                     @foreach ($tags_difficulty as $tag)
-                        <li>{{ $tag->name }}</li>
+                        <li>
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                            <label class="form-check-label" for="flexCheckChecked">
+                                {{ $tag->name }}
+                            </label>
+                        </li>
                     @endforeach
                 </ul>
             </div>
@@ -36,7 +39,12 @@
                 </button>
                 <ul class="dropdown-menu">
                     @foreach ($tags_distance as $tag)
-                        <li>{{ $tag->name }}</li>
+                        <li>
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                            <label class="form-check-label" for="flexCheckChecked">
+                                {{ $tag->name }}
+                            </label>
+                        </li>
                     @endforeach
                 </ul>
             </div>
@@ -47,7 +55,12 @@
                 </button>
                 <ul class="dropdown-menu">
                     @foreach ($tags_terrain as $tag)
-                        <li>{{ $tag->name }}</li>
+                        <li>
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                            <label class="form-check-label" for="flexCheckChecked">
+                                {{ $tag->name }}
+                            </label>
+                        </li>
                     @endforeach
                 </ul>
             </div>
