@@ -28,7 +28,7 @@
                                     $imagePath = $hike->pictures->first()->image_path;
                                 @endphp
                                     <img class="figure-img img-fluid"
-                                         src="{{ str_starts_with($imagePath, 'images')  ? asset('storage/' . $imagePath) : asset($imagePath) }}"
+                                         src="{{ str_starts_with($imagePath, 'images')   ? asset('storage/' . $imagePath) : asset($imagePath) }}"
                                          alt="{{ $hike->name }}"
                                          style="object-fit: cover; height: 100%; width: 100%;">
                                 @else
