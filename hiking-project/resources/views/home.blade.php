@@ -14,7 +14,19 @@
 
     @include('partials/header')
 
-    {{-- @dd($tags_difficulty) --}}
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
+
+    {{-- @if (!isset($deleted_id))
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <strong>Hike deleted</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    @endif --}}
+
     <div class="container">
         <div class="d-flex justify-content-around my-5">
             <div class="btn-group">

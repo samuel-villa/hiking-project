@@ -117,7 +117,11 @@ class HikeController extends Controller
 
     public function delete($id)
     {
-        Hike::where('id', $id)->delete();
+        $hike = Hike::find($id);
+        if ($hike) {
+            $hike->delete();
+            session()->flash('status', 'Hike deleted successfully!');
+        }
         return redirect()->route('home');
     }
 }
