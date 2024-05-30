@@ -35,6 +35,7 @@ Route::prefix('/hike')->controller(HikeController::class)->group(function () {  
 
     Route::post('/{id}/edit', 'edit')->name('edit');
     Route::post('/', 'create')->name('create');
+    Route::post('/{id}/delete', 'delete')->name('delete-hike');
 });
 
 

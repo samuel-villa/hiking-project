@@ -101,7 +101,8 @@
                 <button type="button" class="btn btn-success">Edit Hike</button>
               </a>
             </div>
-          @endif
+            @include('partials/delete-hike-modal')
+        @endif
     </div>
 
 

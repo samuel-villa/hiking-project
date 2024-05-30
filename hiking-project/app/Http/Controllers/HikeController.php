@@ -115,4 +115,10 @@ class HikeController extends Controller
             ]);
         return redirect()->route('show-hike', ['id' => $id]);
     }
+
+    public function delete($id)
+    {
+        Hike::where('id', $id)->delete();
+        return redirect()->route('home');
+    }
 }
