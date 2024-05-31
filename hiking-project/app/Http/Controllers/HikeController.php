@@ -55,9 +55,18 @@ class HikeController extends Controller
     {
         $hike = Hike::findOrFail($id);
 
+        $tags_difficulty = Tag::where('type', 'difficulty')->get();
+        $tags_distance = Tag::where('type', 'distance')->get();
+        $tags_terrain = Tag::where('type', 'terrain')->get();
+        $tags_loop = Tag::where('type', 'loop')->get();
+
         return view('show-edit-hike', [
             'request' => $request,
             'hike' => $hike,
+            'tags_difficulty' => $tags_difficulty,
+            'tags_distance' => $tags_distance,
+            'tags_terrain' => $tags_terrain,
+            'tags_loop' => $tags_loop
         ]);
     }
 
