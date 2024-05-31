@@ -50,11 +50,13 @@
             <input type="file" class="form-control" id="picture" name="picture">
         </div> --}}
 
-        <div class="mb-3"><button type="submit" class="btn btn-primary">Save Hike</button></div>
+        <div class="mb-3"><button type="submit" class="btn btn-primary">Save Hike</button>
+            @include('partials/delete-hike-modal')
+        </div>
 
     </form>
 
-    @include('partials/delete-hike-modal')
+
 
 </div>
 @include('partials/footer')
