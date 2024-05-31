@@ -18,7 +18,7 @@
     @include('partials/header')
 
 
-    <<div class="container">
+    <div class="container">
         <div class="card">
             <div class="card-body">
                 <h2 class="card-title text-center "><strong>{{ $hike->name }}</strong></h2>

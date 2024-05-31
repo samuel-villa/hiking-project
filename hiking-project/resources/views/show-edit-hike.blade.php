@@ -20,27 +20,27 @@
             <label for="distance" class="form-label">Distance</label>
             <input type="text" class="form-control" id="distance" name="distance" value="{{ $hike->distance }}">
         </div>
-    
+
         <div class="mb-3">
             <label for="duration" class="form-label">Duration</label>
             <input type="text" class="form-control" id="duration" name="duration" value="{{ $hike->duration }}">
         </div>
-    
+
         <div class="mb-3">
             <label for="elevation_gain" class="form-label">Elevation</label>
             <input type="text" class="form-control" id="elevation_gain" name="elevation_gain" value="{{ $hike->elevation_gain }}">
         </div>
-    
+
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
-            <textarea id="description" class="form-control" name="description" rows="4" cols="50" maxlength="500">{{ old('description', $hike->description ?? '') }}</textarea>
+            <textarea id="description" class="form-control" name="description" rows="4" cols="50" maxlength="3000">{{ old('description', $hike->description ?? '') }}</textarea>
         </div>
 
         <div class="mb-3">
             <label for="trail_rank" class="form-label">Rate</label>
             <input type="text" class="form-control" id="trail_rank" name="trail_rank" value="{{ $hike->trail_rank }}">
         </div>
-    
+
         {{-- <div class="mb-3">
             <label for="picture" class="form-label">Picture</label>
             <input type="file" class="form-control" id="picture" name="picture">
@@ -51,6 +51,6 @@
     </form>
 
     @include('partials/delete-hike-modal')
-    
+
 </div>
 @include('partials/footer')
