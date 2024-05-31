@@ -60,4 +60,9 @@ class ProfileController extends Controller
 
         return Redirect::to('home');
     }
+
+    public function getUsers()
+    {
+        return view('user-list');
+    }
 }
