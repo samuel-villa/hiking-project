@@ -27,7 +27,16 @@
         </div>
     @endif
 
-    @include('partials/tags-dropdown')
+    <form action="{{ route('filter') }}" method="GET">
+        @csrf
+        @include('partials/tags-dropdown')
+        
+        <div class="btn-group">
+            <a href={{ route('filter') }}>
+                <button type="submit" class="btn btn-warning">Apply filters</button>
+            </a>
+        </div>
+    </form>
 
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 @foreach($hikes as $hike)
@@ -86,7 +95,7 @@
                 @endforeach
             </div>
             <div class="my-5">
-                {{$hikes->links()}}
+                {{-- {{$hikes->links()}} --}}
             </div>
         </div>
 

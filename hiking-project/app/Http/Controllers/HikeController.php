@@ -12,7 +12,7 @@ use App\Models\Tag;
 
 class HikeController extends Controller
 {
-    public function show()
+    public function show(Request $request)
     {
         $hikes = Hike::with(['pictures' => function ($query) {
             $query->orderBy('id')->limit(1);
@@ -22,14 +22,41 @@ class HikeController extends Controller
         $tags_distance = Tag::where('type', 'distance')->get();
         $tags_terrain = Tag::where('type', 'terrain')->get();
         $tags_loop = Tag::where('type', 'loop')->get();
+        $selectedTags = $request->input('tags', []);
 
         return view('home', [
             'hikes' => $hikes,
             'tags_difficulty' => $tags_difficulty,
             'tags_distance' => $tags_distance,
             'tags_terrain' => $tags_terrain,
-            'tags_loop' => $tags_loop
+            'tags_loop' => $tags_loop,
+            'selectedTags' => $selectedTags
+        ]);
+    }
 
+    public function filter(Request $request)
+    {
+        $tags_difficulty = Tag::where('type', 'difficulty')->get();
+        $tags_distance = Tag::where('type', 'distance')->get();
+        $tags_terrain = Tag::where('type', 'terrain')->get();
+        $tags_loop = Tag::where('type', 'loop')->get();
+        $selectedTags = $request->input('tags', []);
+
+        if (!empty($selectedTags)) {
+            $hikes = Hike::whereHas('tags', function($query) use ($selectedTags) {
+                $query->whereIn('tags.id', $selectedTags);
+            })->get();
+        } else {
+            $hikes = Hike::all();
+        }
+
+        return view('home', [
+            'hikes' => $hikes,
+            'tags_difficulty' => $tags_difficulty,
+            'tags_distance' => $tags_distance,
+            'tags_terrain' => $tags_terrain,
+            'tags_loop' => $tags_loop,
+            'selectedTags' => $selectedTags
         ]);
     }
 
@@ -37,9 +64,7 @@ class HikeController extends Controller
     {
         $hike = Hike::with(['pictures', 'tags'])->findOrFail($id);
         $imagePaths = $hike->pictures->pluck('image_path');
-        // if ($post->slug !== $slug) {
-        //     return to_route('blog.show', ['slug' => $post->slug, 'id' => $post->id]);
-        // }
+        
         return view('hike-detail', [
             'hike' => $hike,
             'imagePaths' => $imagePaths
