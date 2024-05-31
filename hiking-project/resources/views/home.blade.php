@@ -12,6 +12,9 @@
 </head>
 <body style="background-color: #f7fafc;">
 
+{{--    <img src={{asset("images/nature-background-1.png")}} alt="nature" class="img-fluid position-absolute top-0 start-0 w-100 h-auto" >--}}
+
+
 
     @include('partials/header')
 
@@ -38,6 +41,7 @@
         </div>
     </form> --}}
     @include('partials/tags-dropdown')
+
 <div class="container">
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 @foreach($hikes as $hike)

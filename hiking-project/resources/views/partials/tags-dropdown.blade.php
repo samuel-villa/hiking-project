@@ -1,9 +1,9 @@
 <form action="{{ route('filter') }}" method="GET">
     @csrf
     <div class="container">
-        <div class="d-flex justify-content-between mt-5">
+        <div class="d-flex justify-content-around border border-top-0 py-3" style="padding-inline:15rem;">
             <div class="btn-group">
-                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn btn-outline-secondary btn-sm dropdown-toggle" style="border:none" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Difficulty
                 </button>
                 <ul class="dropdown-menu">
@@ -19,7 +19,7 @@
             </div>
 
             <div class="btn-group">
-                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn btn-outline-secondary btn-sm dropdown-toggle" style="border:none" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Distance
                 </button>
                 <ul class="dropdown-menu">
@@ -35,7 +35,7 @@
             </div>
 
             <div class="btn-group">
-                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn btn-outline-secondary btn-sm dropdown-toggle" style="border:none" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Terrain
                 </button>
                 <ul class="dropdown-menu">
@@ -51,7 +51,7 @@
             </div>
 
             <div class="btn-group">
-                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn btn-outline-secondary btn-sm dropdown-toggle" style="border:none" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Loop
                 </button>
                 <ul class="dropdown-menu">
@@ -69,7 +69,7 @@
             @if (Route::currentRouteName() == 'home' || Route::currentRouteName() == 'filter')
             <div class="btn-group">
                 <a href={{ route('filter') }}>
-                    <button type="submit" class="btn btn-success btn-sm">Apply filters</button>
+                    <button type="submit" class="btn btn-outline-success btn-sm">Apply filters</button>
                 </a>
             </div>
             @endif
@@ -80,7 +80,7 @@
 @if (Route::currentRouteName() == 'home' || Route::currentRouteName() == 'filter')
 <form method="GET" action="{{ route('clearFilters') }}">
     <div class="container">
-        <div class="d-flex justify-content-end my-2 mb-5">
+        <div class="d-flex justify-content-end mt-5 mb-5" style="z-index:2;">
             <a href={{ route('clearFilters') }}>
                 <button type="submit" class="btn btn-warning btn-sm">Clear filters</button>
             </a>

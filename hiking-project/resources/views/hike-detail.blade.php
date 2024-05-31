@@ -25,7 +25,7 @@
 
 
     <div class="container">
-        <div class="card">
+        <div class="card my-5">
             <div class="card-body">
                 <h2 class="card-title text-center "><strong>{{ $hike->name }}</strong></h2>
                 <p class="card-text my-3 ">{{ $hike->description }}</p>
