@@ -60,11 +60,17 @@ class HikeController extends Controller
         ]);
     }
 
+    public function clearFilters()
+    {
+        session()->forget('selectedTags');
+        return redirect()->route('home');
+    }
+
     public function show_hike(string $id)
     {
         $hike = Hike::with(['pictures', 'tags'])->findOrFail($id);
         $imagePaths = $hike->pictures->pluck('image_path');
-        
+
         return view('hike-detail', [
             'hike' => $hike,
             'imagePaths' => $imagePaths

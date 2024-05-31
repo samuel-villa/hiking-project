@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/home', [HikeController::class, 'show'])->name('home');
 Route::get('/filterHikes', [HikeController::class, 'filter'])->name('filter');
+Route::get('/clearFilterHikes', [HikeController::class, 'clearFilters'])->name('clearFilters');
 
 Route::prefix('/hike')->controller(HikeController::class)->group(function () {  // prefix all routes within this parent route (idem for names)
     Route::get('/add-hike', 'show_add_hike')->name('add-hike');
