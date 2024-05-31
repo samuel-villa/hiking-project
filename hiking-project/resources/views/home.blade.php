@@ -21,12 +21,11 @@
         </div>
     @endif
 
-    {{-- @if (!isset($deleted_id))
-        <div class="alert alert-info alert-dismissible fade show" role="alert">
-        <strong>Hike deleted</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    @endif --}}
+    @if (session('created'))
+        <div class="alert alert-success">
+            {{ session('created') }}
+        </div>
+    @endif
 
     <div class="container">
         <div class="d-flex justify-content-around my-5">

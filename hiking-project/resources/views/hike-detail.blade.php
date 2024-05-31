@@ -17,6 +17,12 @@
 
     @include('partials/header')
 
+    @if (session('edited'))
+        <div class="alert alert-success">
+            {{ session('edited') }}
+        </div>
+    @endif
+
 
     <div class="container">
         <div class="card">
