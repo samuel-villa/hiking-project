@@ -26,7 +26,7 @@
             </div>
             <div style="max-height: 600px;">
                 @if (count($imagePaths) == 0)
-                    <img class="figure-img img-fluid" src="{{ asset('images/no_image.png') }}" alt="{{ $hike->name }}" style="width:100%; height:100%; object-fit: cover;">
+                    <img class="figure-img img-fluid" src="{{ asset('images/no_image.png') }}" alt="{{ $hike->name }}" style="width:100%;max-height: 600px; height:100%; object-fit: cover;">
                 @elseif (count($imagePaths) > 1)
                     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                         <ol class="carousel-indicators">
