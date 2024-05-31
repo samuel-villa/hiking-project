@@ -39,7 +39,7 @@
             <ul class="dropdown-menu">
                 @foreach ($tags_terrain as $tag)
                     <li>
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                        <input class="form-check-input" type="checkbox" name="tags[]" value={{ $tag->id }} id="flexCheckChecked">
                         <label class="form-check-label" for="flexCheckChecked">
                             {{ $tag->name }}
                         </label>
