@@ -111,6 +111,8 @@ class HikeController extends Controller
                 'description' => $request->input('description'),
                 'trail_rank' => $request->input('trail_rank'),
             ]);
+
+        session()->flash('edited', 'Hike edited successfully!');
         return redirect()->route('show-hike', ['id' => $id]);
     }
 
