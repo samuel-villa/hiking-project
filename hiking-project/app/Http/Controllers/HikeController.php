@@ -10,13 +10,16 @@ use App\Models\Picture;
 use App\Models\Tag;
 
 
+
 class HikeController extends Controller
 {
+    public $pagination = 6;
+
     public function show(Request $request)
     {
         $hikes = Hike::with(['pictures' => function ($query) {
             $query->orderBy('id')->limit(1);
-        }, 'tags'])->paginate(6);
+        }, 'tags'])->paginate($this->pagination);
 
         $tags_difficulty = Tag::where('type', 'difficulty')->get();
         $tags_distance = Tag::where('type', 'distance')->get();
@@ -45,9 +48,9 @@ class HikeController extends Controller
         if (!empty($selectedTags)) {
             $hikes = Hike::whereHas('tags', function($query) use ($selectedTags) {
                 $query->whereIn('tags.id', $selectedTags);
-            })->get();
+            })->paginate($this->pagination);
         } else {
-            $hikes = Hike::all();
+            $hikes = Hike::all()->paginate($this->pagination);
         }
 
         return view('home', [
