@@ -1,7 +1,7 @@
 <form action="{{ route('filter') }}" method="GET">
     @csrf
     <div class="container">
-        <div class="d-flex justify-content-around my-5">
+        <div class="d-flex justify-content-between mt-5">
             <div class="btn-group">
                 <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Difficulty
@@ -17,7 +17,7 @@
                     @endforeach
                 </ul>
             </div>
-        
+
             <div class="btn-group">
                 <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Distance
@@ -33,7 +33,7 @@
                     @endforeach
                 </ul>
             </div>
-        
+
             <div class="btn-group">
                 <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Terrain
@@ -49,7 +49,7 @@
                     @endforeach
                 </ul>
             </div>
-        
+
             <div class="btn-group">
                 <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Loop
@@ -65,11 +65,11 @@
                     @endforeach
                 </ul>
             </div>
-        
+
             @if (Route::currentRouteName() == 'home' || Route::currentRouteName() == 'filter')
             <div class="btn-group">
                 <a href={{ route('filter') }}>
-                    <button type="submit" class="btn btn-success">Apply filters</button>
+                    <button type="submit" class="btn btn-success btn-sm">Apply filters</button>
                 </a>
             </div>
             @endif
@@ -80,9 +80,9 @@
 @if (Route::currentRouteName() == 'home' || Route::currentRouteName() == 'filter')
 <form method="GET" action="{{ route('clearFilters') }}">
     <div class="container">
-        <div class="d-flex justify-content-around my-5">
+        <div class="d-flex justify-content-end my-2 mb-5">
             <a href={{ route('clearFilters') }}>
-                <button type="submit" class="btn btn-warning">Clear filters</button>
+                <button type="submit" class="btn btn-warning btn-sm">Clear filters</button>
             </a>
         </div>
     </div>

@@ -30,7 +30,7 @@
     {{-- <form action="{{ route('filter') }}" method="GET">
         @csrf
         @include('partials/tags-dropdown')
-        
+
         <div class="btn-group">
             <a href={{ route('filter') }}>
                 <button type="submit" class="btn btn-warning">Apply filters</button>
@@ -39,6 +39,7 @@
     </form> --}}
     @include('partials/tags-dropdown')
 
+    <div class="container">
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 @foreach($hikes as $hike)
                 <a style="text-decoration:none;" href="{{ route('show-hike', ['id' => $hike->id]) }}">
