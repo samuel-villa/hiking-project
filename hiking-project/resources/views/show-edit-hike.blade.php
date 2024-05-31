@@ -31,6 +31,10 @@
             <input type="text" class="form-control" id="elevation_gain" name="elevation_gain" value="{{ $hike->elevation_gain }}">
         </div>
 
+
+        @include('partials/tags-dropdown')
+
+
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
             <textarea id="description" class="form-control" name="description" rows="4" cols="50" maxlength="3000">{{ old('description', $hike->description ?? '') }}</textarea>
