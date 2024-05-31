@@ -93,7 +93,7 @@
         </div>
     </div>
     <div class="container my-3">
-        @if (Auth::id() && Auth::id() == $hike->user_id)
+        @if ((Auth::id() && Auth::id() == $hike->user_id) || (Auth::check() && Auth::user()->is_admin == 1))
             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                 <a href="{{ route('show-edit-hike', ['id' => $hike->id]) }}">
                     <button type="button" class="btn btn-success">Edit Hike</button>
