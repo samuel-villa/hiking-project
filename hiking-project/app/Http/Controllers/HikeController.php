@@ -59,6 +59,7 @@ class HikeController extends Controller
         $tags_distance = Tag::where('type', 'distance')->get();
         $tags_terrain = Tag::where('type', 'terrain')->get();
         $tags_loop = Tag::where('type', 'loop')->get();
+        $selectedTags = $hike->tags->pluck('id')->toArray();
 
         return view('show-edit-hike', [
             'request' => $request,
@@ -66,7 +67,8 @@ class HikeController extends Controller
             'tags_difficulty' => $tags_difficulty,
             'tags_distance' => $tags_distance,
             'tags_terrain' => $tags_terrain,
-            'tags_loop' => $tags_loop
+            'tags_loop' => $tags_loop,
+            'selectedTags' => $selectedTags
         ]);
     }
 
@@ -121,8 +123,13 @@ class HikeController extends Controller
                 'trail_rank' => $request->input('trail_rank'),
             ]);
 
+        $hike = Hike::find($id); // Retrieve the hike model
+        $hike->tags()->sync($request->input('tags', [])); // Sync the tags
         session()->flash('edited', 'Hike edited successfully!');
-        return redirect()->route('show-hike', ['id' => $id]);
+
+        return redirect()->route('show-hike', [
+            'id' => $id,
+        ]);
     }
 
     public function delete($id)

@@ -7,7 +7,7 @@
             <ul class="dropdown-menu">
                 @foreach ($tags_difficulty as $tag)
                     <li>
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                        <input class="form-check-input" type="checkbox" name="tags[]" value="{{ $tag->id }}" id="flexCheckChecked" {{ in_array($tag->id, $selectedTags) ? 'checked' : '' }}>
                         <label class="form-check-label" for="flexCheckChecked">
                             {{ $tag->name }}
                         </label>
@@ -15,7 +15,7 @@
                 @endforeach
             </ul>
         </div>
-
+    
         <div class="btn-group">
             <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Distance
@@ -23,7 +23,7 @@
             <ul class="dropdown-menu">
                 @foreach ($tags_distance as $tag)
                     <li>
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                        <input class="form-check-input" type="checkbox" name="tags[]" value="{{ $tag->id }}" id="flexCheckChecked" {{ in_array($tag->id, $selectedTags) ? 'checked' : '' }}>
                         <label class="form-check-label" for="flexCheckChecked">
                             {{ $tag->name }}
                         </label>
@@ -31,7 +31,7 @@
                 @endforeach
             </ul>
         </div>
-
+    
         <div class="btn-group">
             <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Terrain
@@ -39,7 +39,7 @@
             <ul class="dropdown-menu">
                 @foreach ($tags_terrain as $tag)
                     <li>
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                        <input class="form-check-input" type="checkbox" name="tags[]" value="{{ $tag->id }}" id="flexCheckChecked" {{ in_array($tag->id, $selectedTags) ? 'checked' : '' }}>
                         <label class="form-check-label" for="flexCheckChecked">
                             {{ $tag->name }}
                         </label>
@@ -47,11 +47,22 @@
                 @endforeach
             </ul>
         </div>
-
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-            <label class="form-check-label" for="flexCheckChecked">
+    
+        <div class="btn-group">
+            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Loop
-            </label>
+            </button>
+            <ul class="dropdown-menu">
+                @foreach ($tags_loop as $tag)
+                    <li>
+                        <input class="form-check-input" type="checkbox" name="tags[]" value="{{ $tag->id }}" id="flexCheckChecked" {{ in_array($tag->id, $selectedTags) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="flexCheckChecked">
+                            {{ $tag->name }}
+                        </label>
+                    </li>
+                @endforeach
+            </ul>
         </div>
+    
     </div>
+</div>
