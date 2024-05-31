@@ -21,6 +21,12 @@
         </div>
     @endif
 
+    @if (session('created'))
+        <div class="alert alert-success">
+            {{ session('created') }}
+        </div>
+    @endif
+
     {{-- @if (!isset($deleted_id))
         <div class="alert alert-info alert-dismissible fade show" role="alert">
         <strong>Hike deleted</strong>

@@ -75,10 +75,6 @@ class HikeController extends Controller
 
         $userId = Auth::id();
 
-        // dd($request);
-        // dd($request->input('name'));
-        // dd($request->picture);
-
         $hike = Hike::create([
             'name' => $request->input('name'),
             'distance' => $request->input('distance'),
@@ -98,6 +94,8 @@ class HikeController extends Controller
                 'image_path' => $path,
             ]);
         }
+
+        session()->flash('created', 'Hike created successfully!');
 
         return redirect()->route('home');
     }
