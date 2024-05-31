@@ -32,7 +32,7 @@
             </div>
             <div style="max-height: 600px;">
                 @if (count($imagePaths) == 0)
-                    <img class="figure-img img-fluid" src="{{ asset('images/no_image.png') }}" alt="{{ $hike->name }}" style="width:100%;max-height: 600px; height:100%; object-fit: cover;">
+                    <img class="figure-img img-fluid" src="{{ asset('images/no_image.png') }}" alt="{{ $hike->name }}" style="width:100%;max-height: 600px; height:auto; object-fit: cover; overflow:hidden;">
                 @elseif (count($imagePaths) > 1)
                     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                         <ol class="carousel-indicators">
@@ -42,7 +42,7 @@
                         </ol>
                         <div class="carousel-inner">
                             @foreach ($imagePaths as $index => $imagePath)
-                                <div style="max-height: 600px; object-fit: cover;" class="carousel-item @if ($index === 0) active @endif">
+                                <div style="width:100%;max-height: 600px; height:auto; object-fit: cover; overflow:hidden;" class="carousel-item @if ($index === 0) active @endif">
                                     <img class="d-block w-100" src="{{ $imagePath }}" alt="Slide {{ $index + 1 }}">
                                 </div>
                             @endforeach
@@ -57,7 +57,7 @@
                         </a>
                     </div>
                 @else
-                    <img class="figure-img img-fluid" src="{{ str_starts_with($imagePaths[0], 'images') ? asset('storage/' . $imagePaths[0]) : asset($imagePaths[0]) }}" alt="{{ $hike->name }}" style="object-fit: cover; height: 100%; width: 100%;">
+                    <img class="figure-img img-fluid" src="{{ str_starts_with($imagePaths[0], 'images') ? asset('storage/' . $imagePaths[0]) : asset($imagePaths[0]) }}" alt="{{ $hike->name }}" style="width:100%;max-height: 600px; height:auto; object-fit: cover; overflow:hidden;">
                 @endif
             </div>
 
