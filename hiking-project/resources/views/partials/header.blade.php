@@ -12,6 +12,11 @@
                     <div class="ms-auto d-flex justify-content-end">
                         @if (Auth::id())
                             <div class="btn-group me-2" role="group" aria-label="Basic mixed styles example">
+                                <a href={{ route('getUsers') }}>
+                                    <button type="button" class="btn btn-success">Users</button>
+                                </a>
+                            </div>
+                            <div class="btn-group me-2" role="group" aria-label="Basic mixed styles example">
                                 <a href={{ route('add-hike') }}>
                                     <button type="button" class="btn btn-success">Add New Hike</button>
                                 </a>
