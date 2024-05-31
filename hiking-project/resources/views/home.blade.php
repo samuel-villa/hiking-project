@@ -96,7 +96,7 @@
                 @endforeach
             </div>
             <div class="my-5">
-                 {{$hikes->links()}}
+                {{$hikes->links()}}
             </div>
         </div>
 
