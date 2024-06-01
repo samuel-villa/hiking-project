@@ -1,5 +1,5 @@
     <div class="container">
-{{--        <div class=" justify-content-center border shadow mb-5 py-2">--}}
+
         <div class="d-flex flex-wrap justify-content-center border shadow-sm mb-5 py-2 gap-3">
 
                 @if (Route::currentRouteName() == 'home' || Route::currentRouteName() == 'filter')
@@ -85,13 +85,8 @@
                         <button type="submit" class="btn btn-outline-success btn-sm">Apply filters</button>
                     </a>
                 @endif
-                </form>
-
-
 
             </div>
         </div>
 
-{{--        </div>--}}
-    </div>
 

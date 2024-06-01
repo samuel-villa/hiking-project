@@ -45,10 +45,10 @@
             <input type="text" class="form-control" id="trail_rank" name="trail_rank" value="{{ $hike->trail_rank }}">
         </div>
 
-        {{-- <div class="mb-3">
+         <div class="mb-3">
             <label for="picture" class="form-label">Picture</label>
             <input type="file" class="form-control" id="picture" name="picture">
-        </div> --}}
+        </div>
 
         <div class="mb-3"><button type="submit" class="btn btn-primary">Save Hike</button>
             @include('partials/delete-hike-modal')
