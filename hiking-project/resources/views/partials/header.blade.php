@@ -24,7 +24,7 @@
                     <div class="ms-auto d-flex justify-content-end gap-2">
                         @if (Auth::id())
                             <div class="btn-group me-2" role="group" aria-label="Basic mixed styles example">
-                                <a href={{ route('getUsers') }}>
+                                <a href="{{ route('users.index') }}">
                                     <button type="button" class="btn btn-outline-primary">Users</button>
                                 </a>
                             </div>
