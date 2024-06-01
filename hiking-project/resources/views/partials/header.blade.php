@@ -23,11 +23,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class="ms-auto d-flex justify-content-end gap-2">
                         @if (Auth::id())
-                            <div class="btn-group me-2" role="group" aria-label="Basic mixed styles example">
-                                <a href="{{ route('users.index') }}">
-                                    <button type="button" class="btn btn-outline-primary">Users</button>
-                                </a>
-                            </div>
+                            @if ((Auth::check() && Auth::user()->is_admin == 1))
+                                <div class="btn-group me-2" role="group" aria-label="Basic mixed styles example">
+                                    <a href="{{ route('users.index') }}">
+                                        <button type="button" class="btn btn-outline-primary">Users</button>
+                                    </a>
+                                </div>
+                            @endif
                             <div class="btn-group me-2" role="group" aria-label="Basic mixed styles example">
                                 <a href={{ route('add-hike') }}>
                                     <button type="button" class="btn btn-success">Add New Hike</button>
