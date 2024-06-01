@@ -1,19 +1,20 @@
 
-<header>
-    <div class="container">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary border border-top-0 border-bottom-0">
-            <div class="container-fluid">
+<header >
+    <div class="container" >
+        <nav class="navbar navbar-expand-lg border" style="background-color:#EEEEEE;">
+            <div class="container-fluid" >
+
                 <a class="navbar-brand" href="{{ route('home') }}">Hikido</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <div class="ms-auto d-flex justify-content-end">
+                    <div class="ms-auto d-flex justify-content-end gap-2">
                         @if (Auth::id())
                             <div class="btn-group me-2" role="group" aria-label="Basic mixed styles example">
                                 <a href={{ route('getUsers') }}>
-                                    <button type="button" class="btn btn-success">Users</button>
+                                    <button type="button" class="btn btn-outline-primary">Users</button>
                                 </a>
                             </div>
                             <div class="btn-group me-2" role="group" aria-label="Basic mixed styles example">
