@@ -17,6 +17,7 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Admin</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -26,6 +27,7 @@
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
+                    <td>{{ $user->is_admin ? 'Admin' : 'User' }}</td>
                     <td>
                         <form action="{{ route('users.destroy', $user) }}" method="POST">
                             @csrf
