@@ -30,7 +30,7 @@
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 @foreach($hikes as $hike)
                 <a style="text-decoration:none;" href="{{ route('show-hike', ['id' => $hike->id]) }}">
-                    <div class="col my-5">
+                    <div class="col my-5 zoom-on-hover">
                         <div class="card shadow">
                             <figure class="figure m-0 w-100 " style="height: 280px; overflow: hidden;">
                                 @if ($hike->pictures->isNotEmpty() && $hike->pictures->first()->image_path)
