@@ -31,4 +31,9 @@ class Hike extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

@@ -69,11 +69,16 @@
                                 </div>
                                 <h6 class="text-center"><strong>Description</strong></h6>
                                 <p class="card-text">{{ $hike->short_description}}</p>
+                                <small class="text-muted">
+                                    <h6><strong>Created by  </strong><span>{{ $hike->creator->name }}</span></h6>
+                                </small>
+
                             </div>
 
                             <div class="card-footer">
-                                <small class="text-muted">Tags :
-                                    {{ $hike->tags->pluck('name')->join(' - ') }}
+
+                                <small class="text-muted">
+                                    <p class="text-center"><strong>{{ $hike->tags->pluck('name')->join(' - ') }}</strong></p>
                                 </small>
                             </div>
                         </div>

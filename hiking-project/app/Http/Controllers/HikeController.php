@@ -19,7 +19,7 @@ class HikeController extends Controller
     {
         $hikes = Hike::with(['pictures' => function ($query) {
             $query->orderBy('id')->limit(1);
-        }, 'tags'])
+        }, 'tags','creator'])
             ->orderBy('trail_rank', 'desc')
             ->paginate($this->pagination);
 
