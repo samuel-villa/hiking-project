@@ -1,212 +1,35 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/29fxUUK1)
-# The hiking project 🥾
+Project duration : 5 days
 
-|Challenge Parameters  | Challenge Details |
-|:---------------------|:------------------|
-|Repository            | `hiking-project`  |
-|Challenge type        | `Project`         |
-|Deadline              | `30/05/2023 5pm`      |
-|Deployment method     | `TBD`             |
-|Group composition     | `Trio or Duo`            |
+Status after 5 days : 90% (we had to learn Laravel and Bootstrap in the same time)
 
-## The mission
+# Hiking Project
 
-As you may know, your coach is a fan of hiking. He asks you to develop an app able to store his favorites trails !
-This website must be collaborative. It means that users can connect & add their own hikes.
-Help hikers to connect each others for building a better world.
+This project, developed collaboratively by Christophe Leroy and Samuel Ciulla, is a hiking sharing website built with Laravel, Vite, React, and Bootstrap. The site includes features such as tagging for sorting hikes, user login system, administrative functions, sessions management, and connects to a SQL database.
+Project Overview
 
-## Goals - At the end of this challenge you should have improved your:
+### The Hiking Project is designed to:
 
-- [ ] Project planning.
-- [ ] Mock-up creation.
-- [ ] *semantical* HTML.
-- [ ] Database creation.
-- [ ] Creation of dynamic website.
-- [ ] Secure programming (with nice errors messages).
-- [ ] Use a router.
-- [ ] OOP.
-- [ ] MVC architecture.
-- [ ] Agile methodology.
+Allow users to share and discover hiking trails.
+Implement a tagging system to categorize hikes based on difficulty, location, etc.
+Provide a user-friendly interface using React components rendered with Laravel's Blade templates.
+Manage user authentication and sessions securely.
+Support administrative functions for managing hikes and user accounts.
 
-## Instructions
+### Technologies Used
 
-### PART 1: Creation of the database
+* Backend: Laravel (PHP), SQL Database
+* Frontend: React, Vite, Bootstrap, JavaScript
+* Styling: CSS (Bootstrap styles)
 
-To start working, it's easier to already have datas.
-Create a database named `hiking` followed by a table called `hikes` and fill it with the following fields:
+### Features
 
-- **Hikes**:
-    - ID (that will be assigned automatically)
-    - name
-    - distance
-    - duration
-    - elevation_gain
-    - description
-    - created_at 
-    - updated_at (if needed)
+* Tagging System: Allows hikes to be categorized and sorted based on tags.
+* User Authentication: Secure login and session management for user accounts.
+* Admin Panel: Administrative interface for managing hikes and user data.
+* Database Integration: Connects to a SQL database to store and retrieve hike information and user data.
 
-Once done, you can retrieve some data from an existing website like [visandro](https://www.visorando.be/) or [wikiloc](https://www.wikiloc.com/).
-You have to collect at least 8 hikes and insert them the database. Each hike must fill in the fields.
-
-Another tables:
-
-- **Users**:
-    - ID
-    - firstname
-    - lastname
-    - nickname (must be unique)
-    - email (must be unique)
-    - password (must be hashed)
-
-- **Tags**:
-    - ID
-    - name
-
-Each hikes will have _at least_ one tag (e.g.: Hard, Rocks, Forest, Historical...).
-
-### PART 2: The architecture
-
-#### MVC
-
-The general architecture of your app must use the MVC.
-It's a structure that will split your project into different files with a clear responsibility for each.
-All PHP Frameworks use this structure (Symfony, Laravel, CodeIgniter, WordPress...).
-By using this organisation, you will have a perfect use of OOP.
-
-#### Router
-
-Instead of having ugly url like that `localhost/View/about.php`, we prefer to have fancy url like that `localhost/about`.
-
-That's why to navigate nicely through your website, you have to implement a Router.
-
-Routing allows you to define a URL pattern for the request handler. This request handler will correspond to a controller class and an action method.
-
-You have already made this in the previous workshop.
-
-### PART 3: Layouts
-
-For this part, you are free to make your own design.
-
-Your website should contain, the following layouts :
-
-#### The list of hikes
-
-It displays the hikes with all the info from the database (include the tags), except the id & the description.
-Each hike must have a link to show its details.
-
-All the visitors of the website can see this page.
-
-> Bonus: display an image with the hike
-
-#### A single hike
-
-All the info from the hike.
-The name of the creator & the tags should be displayed.
-You should have a link to go back to the main page.
-
-All the visitors of the website can see this page.
-
-> Bonus: display an image with the hike
-
-#### The list of hikes per tag
-
-For example, if a user want to see all hikes with the tag "Mountain", he should be able to view only those.
-
-All the visitors of the website can see this page.
-
-#### Subscription page
-
-If a visitor wants to create an account to be able to create hikes, he has to subscribe in a specific page or in a modal.
-Send an email to the user when he completes his subscription.
-
-> I advise you to install & use [**PHPMailer**](https://github.com/PHPMailer/PHPMailer) instead of using the `mail()` function which is not very secure. 
-
-#### User profile
-
-A page to display the info of the user. Only the user can access to his own data.  
-A user can edit his profile.  
-If he wants to change his email, send an email for asking confirmation.
-
-> Bonus: create a dashboard of hikes to edit your own hikes more easily.
-
-### PART 4: Features
-
-The website should contain all the basics interactions for making the life of users easy.
-
-#### Add hike
-
-Only when a user is connected, a button must appear to be able to add a new hike. This button should be highlighted.
-
-You will create a form with the fields required,that will post the inputs to the database.
-
-A user has to give at least 1 tag. He can create new tags if he doesn't find a suitable tag.
-
-When you have managed to add a hike, it is good to notify it by message.  
-Display the message "The hike has been added successfully!".
-
-#### Edit a hike
-
-Imagine that we were mistaken when returning the information of the hike, it should be able to change afterwards.
-
-First, in the hikes page, add a link "Edit" attached to each hike owned by the user connected. This link will return to an update page.
-
-A user can only update his own hikes.
-
-On this page we will be able to make the modifications for the chosen hike. Create a form, the fields on this page must be pre-populated from
-information of the chosen hike!
-
-> TIPS: In order to differentiate the hikes it will be necessary to be based on the id and perhaps to see how to pass variables between web pages.
-
-If a user updates the trail, we should see the new date and the message `updated at ...`
-
-#### Delete a hike
-
-In the hikes page, add a link "Delete" attached to each hike owned by the user connected.
-This button should not appear for the other users.
-
-Clicking the button will send the _id_ of the hike to a delete page.
-
-Before the delete, inform the user : "Do you really want to delete this hike ?"
-
-When you have deleted it will return automatically (without the user does anything) to the main page.
-
-> TIPS: For redirection to the main page you should probably take a look at the function [header ()](http://php.net/manual/en/function.header.php)
-
-#### Admin account
-
-Create an Admin account who can create, edit & delete any hike & can delete any user or tag.
-
-## Bonus
-
-### Design
-
-You would like that a maximum of person visit your website, aren't you? So, try to make your website attractive.
-
-### Title & Motto
-
-You don't necessary have to call your website "The Hiking project", feel free to choose a nice title & a punchy motto to lure hikers on your website.
-
-### Deployement
-
-- Heroku, if you use your credits because of the Github student pack : https://www.heroku.com/github-students
-- Any free option like 000webhost
-- Any paid option
-
-## Advices
-
-- Study all the project aspects, from frontend to backend, then make a mock-up (mobile first but the other views as well), some components can be reused later, do things seriously, it will save you a lot of time.
-- For the design, you can use a Bootstrap template for example.
-- Take time to think about your MVC architecture.
-- Use a Trello or a Github project to divide tasks.
-- Have SCRUM meetings regularly (What have you done, Have you difficulties, what will you do ?).
-- Divide your work in little challenges to achieve.
-
-## Remember...
-
-The only way to success is daring to...
-
-![hiking and falling](https://media.giphy.com/media/3oxRmGNqKwCzJ0AwPC/giphy.gif)
-
-# FALL!
-
-## Good luck!
+### Screenshots
+![image](https://github.com/Dranhoc/Hiking_project/assets/160327375/183cd757-8be4-467e-8b58-cfe46dd8f0e0)
+![image](https://github.com/Dranhoc/Hiking_project/assets/160327375/0f9c5f56-01f5-47b3-8380-5ac25400f84b)
+![image](https://github.com/Dranhoc/Hiking_project/assets/160327375/9e53df0c-3fc5-423e-9001-697359ab4cd8)
+![image](https://github.com/Dranhoc/Hiking_project/assets/160327375/79e6fd8b-0a27-47cd-b3b5-f2818ca3c67b)
